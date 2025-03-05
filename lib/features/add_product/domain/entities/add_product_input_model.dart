@@ -1,15 +1,15 @@
 import 'dart:io';
 
-class AddProductInputModel {
+class AddProductInputEntity {
   final String name;
   final num price;
   final String code;
   final String description;
   final File image;
   final bool isFeatured;
-  final String? imageUrl;
+  String? imageUrl;
 
-  AddProductInputModel(
+  AddProductInputEntity(
       {required this.name,
       required this.price,
       required this.code,

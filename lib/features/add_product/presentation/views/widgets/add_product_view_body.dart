@@ -102,7 +102,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                     }
                     if (_formKey.currentState!.validate() &&
                         imagePath != null) {
-                      AddProductInputModel inputModel = AddProductInputModel(
+                      AddProductInputEntity inputModel = AddProductInputEntity(
                         name: name,
                         price: price,
                         code: code,

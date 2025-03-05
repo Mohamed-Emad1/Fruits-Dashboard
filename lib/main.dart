@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_dashboard/core/helper_functions/on_generate_route.dart';
+import 'package:fruits_dashboard/core/services/service_locator.dart';
 import 'package:fruits_dashboard/features/dashboard/presentation/views/dashboard_view..dart';
 
 void main() {
+  setupServiceLocator();
   runApp(const DashboradApp());
 }
 
