@@ -20,27 +20,26 @@ class AddProductInputModel {
       required this.isFeatured,
       this.imageUrl});
 
-    factory AddProductInputModel.fromEntity(AddProductInputEntity entity) {
-      return AddProductInputModel(
-        name: entity.name,
-        price: entity.price,
-        code: entity.code,
-        description: entity.description,
-        image: entity.image,
-        isFeatured: entity.isFeatured,
-        imageUrl: entity.imageUrl,
-      );
-    }  
+  factory AddProductInputModel.fromEntity(AddProductInputEntity entity) {
+    return AddProductInputModel(
+      name: entity.name,
+      price: entity.price,
+      code: entity.code,
+      description: entity.description,
+      image: entity.image,
+      isFeatured: entity.isFeatured,
+      imageUrl: entity.imageUrl,
+    );
+  }
 
-    toJson() {
-      return {
-        "name": name,
-        "price": price,
-        "code": code,
-        "description": description,
-        "image": image,
-        "isFeatured": isFeatured,
-        "imageUrl": imageUrl,
-      };
-    }
+  toJson() {
+    return {
+      "name": name,
+      "price": price,
+      "code": code,
+      "description": description,
+      "isFeatured": isFeatured,
+      "imageUrl": imageUrl,
+    };
+  }
 }

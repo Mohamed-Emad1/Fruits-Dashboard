@@ -2,9 +2,11 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_dashboard/core/widgets/custom_button.dart';
 import 'package:fruits_dashboard/core/widgets/custom_text_form_field.dart';
 import 'package:fruits_dashboard/features/add_product/domain/entities/add_product_input_model.dart';
+import 'package:fruits_dashboard/features/add_product/manager/cubit/add_product_cubit.dart';
 import 'package:fruits_dashboard/features/add_product/presentation/views/widgets/image_field.dart';
 import 'package:fruits_dashboard/features/add_product/presentation/views/widgets/is_featured_item.dart';
 
@@ -102,6 +104,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                     }
                     if (_formKey.currentState!.validate() &&
                         imagePath != null) {
+                      _formKey.currentState!.save();
                       AddProductInputEntity inputModel = AddProductInputEntity(
                         name: name,
                         price: price,
@@ -110,14 +113,14 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                         isFeatured: isFeatured,
                         image: imagePath!,
                       );
-                      _formKey.currentState!.save();
+                      
                       log("name: $name");
                       log("price: $price");
                       log("code: $code");
                       log("description: $description");
                       log("isFeatured: $isFeatured");
                       log("imagePath: $imagePath");
-
+                      context.read<AddProductCubit>().addProduct(inputModel);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text("Product added successfully"),

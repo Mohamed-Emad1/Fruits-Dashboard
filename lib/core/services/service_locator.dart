@@ -13,7 +13,7 @@ final getIt = GetIt.instance;
 void setupServiceLocator() {
   getIt.registerSingleton<DatabaseService>(FireStoreService());
   getIt.registerSingleton<StorageService>(FireStorage());
-  getIt.registerSingleton<ImageRepo>(ImageRepoImpl(getIt.get<FireStorage>()));
+  getIt.registerSingleton<ImageRepo>(ImageRepoImpl(getIt.get<StorageService>()));
 
   getIt.registerSingleton<ProductsRepo>(ProductsRepoImpl(
     getIt.get<DatabaseService>(),
