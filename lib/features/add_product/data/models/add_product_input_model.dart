@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fruits_dashboard/features/add_product/data/models/review_model.dart';
 import 'package:fruits_dashboard/features/add_product/domain/entities/add_product_input_model.dart';
 
 class AddProductInputModel {
@@ -14,10 +15,9 @@ class AddProductInputModel {
   final bool isOrganic;
   final int numOfCallories;
   final int unitAmount;
+  final List<ReviewModel> reviews;
 
-
-
-  AddProductInputModel( 
+  AddProductInputModel(
       {required this.name,
       required this.price,
       required this.code,
@@ -28,22 +28,25 @@ class AddProductInputModel {
       required this.description,
       required this.image,
       required this.isFeatured,
+      required this.reviews,
       this.imageUrl});
 
   factory AddProductInputModel.fromEntity(AddProductInputEntity entity) {
     return AddProductInputModel(
-      name: entity.name,
-      price: entity.price,
-      code: entity.code,
-      description: entity.description,
-      image: entity.image,
-      isFeatured: entity.isFeatured,
-      imageUrl: entity.imageUrl,
-      expirationMonths: entity.expirationMonths,
-      isOrganic: entity.isOrganic,
-      numOfCallories: entity.numOfCallories,
-      unitAmount: entity.unitAmount
-    );
+        name: entity.name,
+        price: entity.price,
+        code: entity.code,
+        description: entity.description,
+        image: entity.image,
+        isFeatured: entity.isFeatured,
+        imageUrl: entity.imageUrl,
+        expirationMonths: entity.expirationMonths,
+        isOrganic: entity.isOrganic,
+        numOfCallories: entity.numOfCallories,
+        unitAmount: entity.unitAmount,
+        reviews: entity.reviews
+            .map((element) => ReviewModel.fromEntity(element))
+            .toList());
   }
 
   toJson() {
@@ -57,7 +60,8 @@ class AddProductInputModel {
       "expirationMonths": expirationMonths,
       "isOrganic": isOrganic,
       "numOfCallories": numOfCallories,
-      "unitAmount": unitAmount
+      "unitAmount": unitAmount,
+      "reviews": reviews.map((e) => e.toJson()).toList()
     };
   }
 }

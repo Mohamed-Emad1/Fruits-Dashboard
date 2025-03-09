@@ -150,6 +150,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                         imagePath != null) {
                       _formKey.currentState!.save();
                       AddProductInputEntity inputModel = AddProductInputEntity(
+                        reviews: [],
                           name: name,
                           price: price,
                           code: code,
