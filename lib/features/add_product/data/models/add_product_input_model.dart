@@ -10,11 +10,21 @@ class AddProductInputModel {
   final File image;
   final bool isFeatured;
   String? imageUrl;
+  final int expirationMonths;
+  final bool isOrganic;
+  final int numOfCallories;
+  final int unitAmount;
 
-  AddProductInputModel(
+
+
+  AddProductInputModel( 
       {required this.name,
       required this.price,
       required this.code,
+      required this.expirationMonths,
+      required this.isOrganic,
+      required this.numOfCallories,
+      required this.unitAmount,
       required this.description,
       required this.image,
       required this.isFeatured,
@@ -29,6 +39,10 @@ class AddProductInputModel {
       image: entity.image,
       isFeatured: entity.isFeatured,
       imageUrl: entity.imageUrl,
+      expirationMonths: entity.expirationMonths,
+      isOrganic: entity.isOrganic,
+      numOfCallories: entity.numOfCallories,
+      unitAmount: entity.unitAmount
     );
   }
 
@@ -40,6 +54,10 @@ class AddProductInputModel {
       "description": description,
       "isFeatured": isFeatured,
       "imageUrl": imageUrl,
+      "expirationMonths": expirationMonths,
+      "isOrganic": isOrganic,
+      "numOfCallories": numOfCallories,
+      "unitAmount": unitAmount
     };
   }
 }

@@ -8,7 +8,7 @@ import 'package:fruits_dashboard/core/widgets/custom_text_form_field.dart';
 import 'package:fruits_dashboard/features/add_product/domain/entities/add_product_input_model.dart';
 import 'package:fruits_dashboard/features/add_product/manager/cubit/add_product_cubit.dart';
 import 'package:fruits_dashboard/features/add_product/presentation/views/widgets/image_field.dart';
-import 'package:fruits_dashboard/features/add_product/presentation/views/widgets/is_featured_item.dart';
+import 'package:fruits_dashboard/features/add_product/presentation/views/widgets/is_bool_item.dart';
 
 class AddProductViewBody extends StatefulWidget {
   const AddProductViewBody({super.key});
@@ -19,9 +19,10 @@ class AddProductViewBody extends StatefulWidget {
 
 class _AddProductViewBodyState extends State<AddProductViewBody> {
   File? imagePath;
-  bool isFeatured = false;
+  bool isFeatured = false, isOrganic = false;
   late String name, code, description;
   late num price;
+  late int expiryMonths, numberOfCalories, unitAmount;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   @override
@@ -49,7 +50,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                   price = num.parse(value!);
                 },
                 hintText: "Product price",
-                textInputType: TextInputType.text,
+                textInputType: TextInputType.number,
               ),
               const SizedBox(
                 height: 16,
@@ -75,9 +76,52 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
               const SizedBox(
                 height: 16,
               ),
-              IsFeaturedItem(
+              CustomTextFormField(
+                onSaved: (value) {
+                  expiryMonths = int.parse(value!);
+                },
+                hintText: "Product expiration Months",
+                textInputType: TextInputType.number,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              CustomTextFormField(
+                onSaved: (value) {
+                  unitAmount = int.parse(value!);
+                },
+                hintText: "Product unit amount",
+                textInputType: TextInputType.number,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              CustomTextFormField(
+                onSaved: (value) {
+                  numberOfCalories = int.parse(value!);
+                },
+                hintText: "Product Calories",
+                textInputType: TextInputType.number,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              IsBoolItem(
+                title: "is Featured Item?",
                 onchanged: (value) {
                   isFeatured = value;
+                },
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              IsBoolItem(
+                title: "is Organic Item?",
+                onchanged: (value) {
+                  isOrganic = value;
                 },
               ),
               const SizedBox(
@@ -106,14 +150,17 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                         imagePath != null) {
                       _formKey.currentState!.save();
                       AddProductInputEntity inputModel = AddProductInputEntity(
-                        name: name,
-                        price: price,
-                        code: code,
-                        description: description,
-                        isFeatured: isFeatured,
-                        image: imagePath!,
-                      );
-                      
+                          name: name,
+                          price: price,
+                          code: code,
+                          description: description,
+                          isFeatured: isFeatured,
+                          image: imagePath!,
+                          expirationMonths: expiryMonths,
+                          numOfCallories: numberOfCalories,
+                          unitAmount: unitAmount,
+                          isOrganic: isOrganic);
+
                       log("name: $name");
                       log("price: $price");
                       log("code: $code");

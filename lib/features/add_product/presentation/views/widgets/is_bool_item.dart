@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:fruits_dashboard/core/utils/app_text_styles.dart';
 import 'package:fruits_dashboard/features/add_product/presentation/views/widgets/custom_checkbox.dart';
 
-import '../../../../../core/utils/app_colors.dart';
-
-class IsFeaturedItem extends StatefulWidget {
-  const IsFeaturedItem({super.key, required this.onchanged});
+class IsBoolItem extends StatefulWidget {
+  const IsBoolItem({super.key, required this.onchanged, required this.title});
 
   final ValueChanged<bool> onchanged;
+  final String title;
   @override
-  State<IsFeaturedItem> createState() => _IsFeaturedItemState();
+  State<IsBoolItem> createState() => _IsBoolItemState();
 }
 
-class _IsFeaturedItemState extends State<IsFeaturedItem> {
+class _IsBoolItemState extends State<IsBoolItem> {
   bool isTermsAccepted = false;
   @override
   Widget build(BuildContext context) {
@@ -30,18 +29,12 @@ class _IsFeaturedItemState extends State<IsFeaturedItem> {
         const SizedBox(
           width: 16,
         ),
-        Expanded(
+         Expanded(
           child: Text.rich(
             TextSpan(
               style: AppTextStyles.semiBold13,
               children: [
-                const TextSpan(text: "is Featured Item?"),
-                TextSpan(
-                  text: "Accept",
-                  style: AppTextStyles.semiBold13.copyWith(
-                    color: AppColors.primaryColor,
-                  ),
-                )
+                TextSpan(text: widget.title),
               ],
             ),
           ),
