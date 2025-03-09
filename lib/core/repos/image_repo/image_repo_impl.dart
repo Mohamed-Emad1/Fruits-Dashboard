@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
@@ -15,6 +16,7 @@ class ImageRepoImpl extends ImageRepo {
     try {
       String url =
           await _fireStorage.uploadFile(image, BackendEndpoints.images);
+          log("url is $url");
       return Right(url);
     } catch (e) {
       return const Left(ServerFailure("Failed to Upload Image"));

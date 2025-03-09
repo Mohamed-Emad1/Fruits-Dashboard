@@ -169,11 +169,6 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                       log("isFeatured: $isFeatured");
                       log("imagePath: $imagePath");
                       context.read<AddProductCubit>().addProduct(inputModel);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Product added successfully"),
-                        ),
-                      );
                     } else {
                       _autovalidateMode = AutovalidateMode.always;
                     }
